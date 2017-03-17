@@ -1,5 +1,3 @@
-" reference: https://github.com/JunichiIto/dotfiles
-
 " No vi compatibility
 set nocompatible
 " Once disable filetype
@@ -102,6 +100,8 @@ set showcmd
 set background=dark
 " Enable backspace
 set backspace=indent,eol,start
+" Add cursorline
+set cursorline
 """"""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""
@@ -348,6 +348,8 @@ function! g:UpdateTags()
 	endfor
 endfunction
 nnoremap <silent> ,ut :<C-u>call g:UpdateTags()<CR>
+
+hi PmenuSel ctermbg=darkcyan
 """"""""""""""""""""""""""""""""""""""""""""
 
 " Add paths for cpp
