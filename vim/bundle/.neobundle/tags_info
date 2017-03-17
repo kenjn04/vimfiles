@@ -1,0 +1,9 @@
+caw.vim
+neobundle.vim
+neocomplcache
+neomru.vim
+nerdtree
+unite.vim
+vim-indent-guides
+vim-quickrun
+vim-trailing-whitespace
