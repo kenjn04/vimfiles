@@ -221,11 +221,12 @@ nnoremap <C-i> :Gtags -f %<CR>
 nnoremap <C-j> :GtagsCursor<CR>
 nnoremap <C-n> :cn<CR>
 nnoremap <C-p> :cp<CR>
-nnoremap <C-x> :cclose<CR>
+nnoremap <silent> ,ug :<C-u>!gtags -i<CR>
 " For NERDTree
 nnoremap <C-t> :NERDTree<CR>
 " Others
 nnoremap <C-c> :close<CR>
+nnoremap <C-x> :cclose<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""
 " Neocomplcache steup (based on neocomplcache.txt)
