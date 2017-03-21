@@ -221,7 +221,7 @@ nnoremap <C-i> :Gtags -f %<CR>
 nnoremap <C-j> :GtagsCursor<CR>
 nnoremap <C-n> :cn<CR>
 nnoremap <C-p> :cp<CR>
-nnoremap <silent> ,ug :<C-u>!gtags -i<CR>
+nnoremap <silent> ,ug :<C-u>!gtags -vi<CR>
 " For NERDTree
 nnoremap <C-t> :NERDTree<CR>
 " Others
