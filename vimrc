@@ -31,8 +31,8 @@ NeoBundle 'Shougo/neocomplcache'
 
 " Make commnet on/off easier
 NeoBundle 'tyru/caw.vim.git'
-nmap <Leader>c <Plug>(caw:i:toggle)
-vmap <Leader>c <Plug>(caw:i:toggle)
+nmap <Leader>c <Plug>(caw:hatpos:toggle)
+vmap <Leader>c <Plug>(caw:hatpos:toggle)
 
 " Run with buffer
 NeoBundle 'thinca/vim-quickrun'
@@ -221,7 +221,7 @@ nnoremap <C-i> :Gtags -f %<CR>
 nnoremap <C-j> :GtagsCursor<CR>
 nnoremap <C-n> :cn<CR>
 nnoremap <C-p> :cp<CR>
-nnoremap <silent> ,ug :<C-u>!gtags -vi<CR>
+nnoremap <silent> ,ug :<C-u>!gtags -i<CR>
 " For NERDTree
 nnoremap <C-t> :NERDTree<CR>
 " Others
@@ -351,6 +351,43 @@ endfunction
 nnoremap <silent> ,ut :<C-u>call g:UpdateTags()<CR>
 
 hi PmenuSel ctermbg=darkcyan
+""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""
+" Create class base difinition
+""""""""""""""""""""""""""""""""""""""""""""
+command! -nargs=1 C call g:CreateClass(<f-args>)
+function! g:CreateClass(name)
+	let class   = 'class '.a:name."\n"
+	let open    = '{'."\n"
+	let public  = 'public:'."\n"
+	let ctor    = "\t".a:name.'();'."\n"
+	let dtor    = "\t".'virtual ~'.a:name.'();'."\n\n"
+	let private = 'private:'."\n\n"
+	let close   = '};'
+	silent! execute 's/^/\=class'
+	silent! execute 's/^/\=open'
+	silent! execute 's/^/\=public'
+	silent! execute 's/^/\=ctor'
+	silent! execute 's/^/\=dtor'
+	silent! execute 's/^/\=private'
+	silent! execute 's/^/\=close'
+endfunction
+""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""
+" Insert include guard to the current file
+""""""""""""""""""""""""""""""""""""""""""""
+function! g:IncludeGuard()
+	let name = fnamemodify(expand('%'),':t')
+	let name = toupper(name)
+	let included = substitute(name,'\.','_','g')
+	let res_head = '#ifndef '.included."\n#define ".included."\n\n"
+	let res_foot = "\n".'#endif //'.included
+	silent! execute '1s/^/\=res_head'
+	silent! execute '$s/$/\=res_foot'
+endfunction
+nnoremap <silent> ,ig :<C-u>call g:IncludeGuard()<CR>
 """"""""""""""""""""""""""""""""""""""""""""
 
 " Add paths for cpp
